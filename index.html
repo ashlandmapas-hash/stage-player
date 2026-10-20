@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Ashland Stage Player</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+      background-color: #000;
+    }
+    html, body, #twitch-container {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="twitch-container"></div>
+
+  <!-- SDK Oficial da Twitch -->
+  <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+  <script>
+    // Pega o canal da URL (ex: ?canal=gaules). Se não passar nada, abre um padrão
+    const params = new URLSearchParams(window.location.search);
+    const channel = params.get('canal') || 'gaules';
+
+    // Pega o domínio público do GitHub Pages automaticamente
+    const currentDomain = window.location.hostname;
+
+    // Inicializa o player oficial
+    new Twitch.Player("twitch-container", {
+      width: "100%",
+      height: "100%",
+      channel: channel,
+      parent: [currentDomain], // Libera o parent na Twitch
+      autoplay: true,
+      muted: false
+    });
+  </script>
+</body>
+</html>
